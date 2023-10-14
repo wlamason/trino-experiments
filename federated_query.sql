@@ -1,4 +1,8 @@
 -- run in dbeaver
+drop table if exists pg1.public.customer;
+drop table if exists pg2.public.nation;
+drop table if exists mysql.tiny.region;
+
 show schemas from tpch;
 show tables from tpch.tiny;
 
@@ -36,7 +40,7 @@ show create table tpch.tiny.customer;
 --    acctbal double NOT NULL,
 --    mktsegment varchar(10) NOT NULL,
 --    comment varchar(117) NOT NULL
--- )
+-- );
 
 create table pg1.public.customer as
 select * from tpch.tiny.customer limit 10;
@@ -47,19 +51,11 @@ create table pg2.public.nation as
 select * from tpch.tiny.nation;
 
 select * from  pg2.public.nation;
-
-select *
-from pg1.public.customer c
-join pg2.public.nation n
-	on c.nationkey = n.nationkey; 
-	
-select *
-from pg1.public.customer c
-join tpch.tiny.nation n
-	on c.nationkey = n.nationkey; 
 	
 create table mysql.tiny.region as
 select * from tpch.tiny.region;
+
+select * from mysql.tiny.region;
 
 select *
 from pg1.public.customer c
