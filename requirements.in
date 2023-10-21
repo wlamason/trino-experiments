@@ -1,4 +1,6 @@
+kaggle
 pandas
 pyarrow
 SQLAlchemy
+tqdm
 trino
