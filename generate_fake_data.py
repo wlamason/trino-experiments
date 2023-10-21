@@ -1,4 +1,3 @@
-# from itertools import product
 from pathlib import Path
 from random import uniform
 from typing import Union
