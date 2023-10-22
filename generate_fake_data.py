@@ -6,12 +6,13 @@ import pandas as pd
 from tqdm.contrib.itertools import product  # Same as `itertools.product`, but with a progress bar.
 
 
-CWD = Path.cwd()
-fake_json = CWD / "datasets" / "json" / "fake_data.json"
-fake_parquet = CWD / "datasets" / "parquet" / "fake_data.parquet"
-fake_data: Union[pd.DataFrame, None] = None
+fake_json_path = Path.cwd() / "datasets" / "json"
+fake_json = fake_json_path / "fake_data.json"
+fake_parquet_path = Path.cwd() / "datasets" / "parquet"
+fake_parquet = fake_parquet_path / "fake_data.parquet"
 
-
+# Cached fake data
+fake_data: pd.DataFrame | None = None
 def generate_fake_data():
     """Generates 1_000_000 fake entity-attribute-value records."""
 
@@ -34,9 +35,11 @@ def generate_fake_data():
 
 if not fake_json.exists():
     generate_fake_data()
+    fake_json_path.mkdir(parents=True)
     fake_data.to_json(fake_json)
 
 
 if not fake_parquet.exists():
     generate_fake_data()
+    fake_parquet_path.mkdir(parents=True)
     fake_data.to_parquet(fake_parquet)
