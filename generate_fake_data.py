@@ -7,8 +7,8 @@ from tqdm.contrib.itertools import product  # Same as `itertools.product`, but w
 
 
 CWD = Path.cwd()
-fake_json = CWD / "datasets" / "fake_data.json"
-fake_parquet = CWD / "datasets" / "fake_data.parquet"
+fake_json = CWD / "datasets" / "json" / "fake_data.json"
+fake_parquet = CWD / "datasets" / "parquet" / "fake_data.parquet"
 fake_data: Union[pd.DataFrame, None] = None
 
 
