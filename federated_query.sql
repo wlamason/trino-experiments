@@ -13,7 +13,7 @@ select * from tpch.tiny.region limit 10;
 select *
 from tpch.tiny.customer c
 join tpch.tiny.nation n
-	on c.nationkey = n.nationkey 
+	on c.nationkey = n.nationkey
 limit 10;
 
 describe tpch.tiny.customer;
@@ -51,7 +51,7 @@ create table pg2.public.nation as
 select * from tpch.tiny.nation;
 
 select * from  pg2.public.nation;
-	
+
 create table mysql.tiny.region as
 select * from tpch.tiny.region;
 
@@ -60,6 +60,6 @@ select * from mysql.tiny.region;
 select *
 from pg1.public.customer c
 join pg2.public.nation n
-	on c.nationkey = n.nationkey 
+	on c.nationkey = n.nationkey
 join mysql.tiny.region r
 	on n.regionkey = r.regionkey;

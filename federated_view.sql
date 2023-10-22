@@ -21,7 +21,7 @@ create view hive.default.test_view as
 select c.name as customer_name, c.address, c.phone, n.name as nation, r.name as region
 from pg1.public.customer c
 join pg2.public.nation n
-	on c.nationkey = n.nationkey 
+	on c.nationkey = n.nationkey
 join mysql.tiny.region r
 	on n.regionkey = r.regionkey;
 
@@ -34,7 +34,7 @@ create view iceberg.default.test_view as
 select c.name as customer_name, c.address, c.phone, n.name as nation, r.name as region
 from pg1.public.customer c
 join pg2.public.nation n
-	on c.nationkey = n.nationkey 
+	on c.nationkey = n.nationkey
 join mysql.tiny.region r
 	on n.regionkey = r.regionkey;
 

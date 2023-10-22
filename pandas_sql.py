@@ -11,7 +11,7 @@ sql_join = """
 select *
 from tpch.tiny.customer c
 join tpch.tiny.nation n
-    on c.nationkey = n.nationkey 
+    on c.nationkey = n.nationkey
 limit 10
 """
 df = pd.read_sql(sql_join, conn, dtype_backend="pyarrow")
