@@ -2,7 +2,7 @@ bleach==6.1.0
 boto3==1.28.68
 botocore==1.31.68
 certifi==2023.7.22
-charset-normalizer==3.3.0
+charset-normalizer==3.3.1
 greenlet==3.0.0
 idna==3.4
 jmespath==1.0.1
@@ -22,6 +22,6 @@ tqdm==4.66.1
 trino==0.327.0
 typing-extensions==4.8.0
 tzdata==2023.3
-tzlocal==5.1
+tzlocal==5.2
 urllib3==1.26.18
 webencodings==0.5.1
