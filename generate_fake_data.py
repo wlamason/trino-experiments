@@ -6,13 +6,6 @@ import pandas as pd
 from tqdm.contrib.itertools import product  # Same as `itertools.product`, but with a progress bar.
 
 
-fake_csv_path = Path.cwd() / "datasets" / "csv"
-fake_csv = fake_csv_path / "fake_data.csv"
-fake_json_path = Path.cwd() / "datasets" / "json"
-fake_json = fake_json_path / "fake_data.json"
-fake_parquet_path = Path.cwd() / "datasets" / "parquet"
-fake_parquet = fake_parquet_path / "fake_data.parquet"
-
 # Cached fake data
 _fake_data: pd.DataFrame | None = None
 def generate_fake_data() -> pd.DataFrame:
@@ -36,19 +29,39 @@ def generate_fake_data() -> pd.DataFrame:
     return _fake_data
 
 
+fake_csv_path = Path.cwd() / "datasets" / "csv"
+fake_csv = fake_csv_path / "fake_data.csv"
 if not fake_csv.exists():
     fake_data = generate_fake_data()
     fake_csv_path.mkdir(parents=True)
     fake_data.to_csv(fake_csv, index=False)
 
 
+fake_json_path = Path.cwd() / "datasets" / "json"
+fake_json = fake_json_path / "fake_data.json"
 if not fake_json.exists():
     fake_data = generate_fake_data()
     fake_json_path.mkdir(parents=True)
     fake_data.to_json(fake_json, orient="records", lines=True)
 
 
+fake_parquet_path = Path.cwd() / "datasets" / "parquet"
+fake_parquet = fake_parquet_path / "fake_data.parquet"
 if not fake_parquet.exists():
     fake_data = generate_fake_data()
     fake_parquet_path.mkdir(parents=True)
     fake_data.to_parquet(fake_parquet)
+
+
+fake_chunked_parquet_path = Path.cwd() / "datasets" / "chunked_parquet"
+if not fake_chunked_parquet_path.exists():
+    fake_data = generate_fake_data()
+    fake_chunked_parquet_path.mkdir(parents=True)
+
+    def chunk_df(df: pd.DataFrame, batch_size: int):
+        end = len(df.index)
+        for i in range(0, end, batch_size):
+            yield df.iloc[i:i + batch_size]
+
+    for idx, df in enumerate(chunk_df(fake_data, batch_size=100_000)):
+        df.to_parquet(fake_chunked_parquet_path / f"{idx}.parquet")
