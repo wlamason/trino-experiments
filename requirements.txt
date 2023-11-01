@@ -9,7 +9,9 @@ jmespath==1.0.1
 kaggle==1.5.16
 numpy==1.26.1
 pandas==2.1.1
+py4j==0.10.9.7
 pyarrow==13.0.0
+pyspark==3.5.0
 python-dateutil==2.8.2
 python-slugify==8.0.1
 pytz==2023.3.post1

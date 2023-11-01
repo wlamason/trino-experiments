@@ -2,6 +2,7 @@ boto3
 kaggle
 pandas
 pyarrow
+pyspark
 SQLAlchemy
 tqdm
 trino
