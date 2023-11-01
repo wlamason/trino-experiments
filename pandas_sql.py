@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-engine = create_engine('trino://trino@localhost:8080/')
+engine = create_engine("trino://trino@localhost:8080/")
 conn = engine.connect()
 
 sql_select = "select * from tpch.tiny.customer limit 10"

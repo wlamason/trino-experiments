@@ -3,11 +3,15 @@ from random import uniform
 from typing import Union
 
 import pandas as pd
-from tqdm.contrib.itertools import product  # Same as `itertools.product`, but with a progress bar.
+from tqdm.contrib.itertools import (
+    product,
+)  # Same as `itertools.product`, but with a progress bar.
 
 
 # Cached fake data
 _fake_data: pd.DataFrame | None = None
+
+
 def generate_fake_data() -> pd.DataFrame:
     """Generates 1_000_000 fake entity-attribute-value records."""
 
@@ -61,7 +65,7 @@ if not fake_chunked_parquet_path.exists():
     def chunk_df(df: pd.DataFrame, batch_size: int):
         end = len(df.index)
         for i in range(0, end, batch_size):
-            yield df.iloc[i:i + batch_size]
+            yield df.iloc[i : i + batch_size]
 
     for idx, df in enumerate(chunk_df(fake_data, batch_size=100_000)):
         df.to_parquet(fake_chunked_parquet_path / f"{idx}.parquet")
